@@ -7,17 +7,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install cowsay
-        run: sudo apt-get install cowsay -y
-
-      - name: Generate Dragon art
-        run: cowsay -f dragon "dragon exists!">> dragon.txt
-
-      - name: test dragon existence
-        run: grep -i "dragon" dragon.txt
-
-      - name: Read File
-        run: cat dragon.txt
-
       - name: List Repo files
-        run: ls -a
+        run: ls -ltra
+
+      - name: Extecute script-1.sh
+        run: |
+          chmod +x ./script-1.sh
+          ./script-1.sh
