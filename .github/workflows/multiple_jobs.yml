@@ -1,0 +1,44 @@
+name: Multiple jobs Workflow
+on: push
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: List all files
+        run: ls -ltra
+
+      - name: Install Cowsay
+        run: sudp apt-get install cowsaY -Y
+
+      - name: Generate ascii art with Cowsay
+        run: cowsay -f dragon "Dragon says Hello!">> dragon.txt
+      - name: Upload dragon.txt as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dragon-artifact
+          path: dragon.txt
+  test_job:
+    runs-on: ubuntu-latest
+    needs: build_job
+    steps:
+      - name: download dragon.txt artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dragon-artifact
+
+      - name: Test file exist
+        run: grep -i "dragon" dragon.txt
+
+  deploy_job:
+    runs-on: ubuntu-latest
+    needs: test_job
+    steps:
+      - name: download dragon.txt artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dragon-artifact
+      - name: Read file content
+        run: cat dragon.txt
