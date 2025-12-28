@@ -11,10 +11,10 @@ jobs:
         run: ls -ltra
 
       - name: Install Cowsay
-        run: sudo apt-get install cowsay -Y
+        run: sudo apt-get install cowsay -y
 
       - name: Generate ascii art with Cowsay
-        run: cowsay -f dragon "Dragon says Hello!">> dragon.txt
+        run: cowsay -f dragon "Dragon is here!">> dragon.txt
       - name: Upload dragon.txt as artifact
         uses: actions/upload-artifact@v4
         with:
