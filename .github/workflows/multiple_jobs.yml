@@ -41,4 +41,4 @@ jobs:
         with:
           name: dragon-artifact
       - name: Read file content
-        run: cat dragon.txt
+        run: cat dragon.txt 
