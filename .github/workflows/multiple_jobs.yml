@@ -11,7 +11,7 @@ jobs:
         run: ls -ltra
 
       - name: Install Cowsay
-        run: sudp apt-get install cowsaY -Y
+        run: sudo apt-get install cowsay -Y
 
       - name: Generate ascii art with Cowsay
         run: cowsay -f dragon "Dragon says Hello!">> dragon.txt
